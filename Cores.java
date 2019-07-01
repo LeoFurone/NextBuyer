@@ -10,10 +10,6 @@ public class Cores {
     public static final Color COR_PESQUISA_DEMORANDO = new Color(49,49,49);
     public static final Color LIST_TRANSF = new Color(221,221,221);
     public static final Color COR_ERRO = new Color(244,68,68);
-    public static final Color COR_COMPRADO = new Color(67,141,19);
-    
-
-    
-    
+    public static final Color COR_COMPRADO = new Color(45,190,45);    
 }
 

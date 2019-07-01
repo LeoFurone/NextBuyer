@@ -10,7 +10,7 @@ public class Busca {
     public static void Pesquisar(Robot robo) {
         while(!(robo.getPixelColor(780,670).equals(Cores.COR_BUSCAR_SELECIONADO))){
             robo.delay(500);
-            robo.mouseMove(772, 668);
+            robo.mouseMove(780, 670);
         }
     }
 
@@ -23,8 +23,7 @@ public class Busca {
     public static void voltar(Robot robo) {
         robo.delay(200);
         robo.mouseMove(100, 135);
-        robo.mousePress(KeyEvent.BUTTON1_DOWN_MASK);
-        robo.mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
+        Auto.apertarBotao(robo);
     }
 
 }
