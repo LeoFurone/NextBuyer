@@ -1,14 +1,18 @@
 package autobuyer;
 
-import com.sun.glass.events.KeyEvent;
 import java.awt.Robot;
 
 public class Jogador {
-    private int precoMin;
-    private int precoMax;
+    private static String precoMin;
+    private static String precoMax;
+    private static boolean confusao;
+
+    public static void setConfusao(boolean confusao) {
+        Jogador.confusao = confusao;
+    }
     
     
-    public static void mandarTransf(Robot robo) {
+    public static void transfJogador(Robot robo) {
         while (!(robo.getPixelColor(1200, 640).equals(Cores.LIST_TRANSF))) {
             robo.delay(1000);
             robo.mouseMove(1200, 640);
@@ -17,10 +21,13 @@ public class Jogador {
             robo.delay(1000);
             Auto.apertarBotao(robo);
             robo.delay(1000);
+            Busca.voltar(robo);
+            robo.delay(1500);
+            Auto.atualizarMercadoJog(robo);
         }
     }
     
-    public static void listar(Robot robo, String pMin, String pMax){
+    public static void listarJogador(Robot robo){
         while (!(robo.getPixelColor(1250, 510).equals(Cores.LIST_TRANSF))) {
             robo.delay(500);
             robo.mouseMove(1250, 510);
@@ -36,12 +43,36 @@ public class Jogador {
             
             robo.mouseMove(1120, 315); robo.delay(500);
             Auto.apertarBotao(robo); robo.delay(500);
-            Auto.gerarTecla(pMin, robo);
+            if(confusao == true){
+                Auto.gerarTecla(Auto.gerarConfusao(precoMin), robo);
+            } else {
+                Auto.gerarTecla(precoMin, robo);
+            }
             robo.mouseMove(1130, 370); robo.delay(500);
             Auto.apertarBotao(robo); robo.delay(500);
-            Auto.gerarTecla(pMax, robo);
+            Auto.gerarTecla(precoMax, robo);
             robo.mouseMove(1212, 465); robo.delay(500);
             Auto.apertarBotao(robo); robo.delay(2000);
+            
+            Busca.voltar(robo);
+            Auto.atualizarMercadoJog(robo);
         }
     }
+
+    public static String getPrecoMin() {
+        return precoMin;
+    }
+
+    public static void setPrecoMin(String precoMin) {
+        Jogador.precoMin = precoMin;
+    }
+
+    public static String getPrecoMax() {
+        return precoMax;
+    }
+
+    public static void setPrecoMax(String precoMax) {
+        Jogador.precoMax = precoMax;
+    }
+    
 }
